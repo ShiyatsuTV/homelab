@@ -12,6 +12,9 @@
 *.key
 *.pem
 
+# Exception : .env volontairement versionné pour installations locales
+!services/oracle-xe/.env
+
 # OS / éditeurs
 .DS_Store
 .idea/

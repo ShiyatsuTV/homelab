@@ -6,14 +6,11 @@ Oracle Database Express Edition (21c) self-hosted in Docker.
 Local Oracle XE instance for development. Multi-tenant: exposes the root `XE` service plus the `xepdb1` and `freepdb1` pluggable databases.
 
 ## Running
-Create a local `.env` (already covered by the root `.gitignore`):
-```bash
-echo "ORACLE_PWD=<your-password>" > .env
-```
-Then start the stack:
+The local-only `.env` is committed alongside `compose.yaml`. Start the stack:
 ```bash
 docker compose up -d
 ```
+To use a different password, edit `.env` before bringing the stack up.
 
 ## Access
 - Listener (TCP): `localhost:1521`
