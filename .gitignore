@@ -1,0 +1,19 @@
+# Archives téléchargeables
+*.zip
+*.tar.gz
+
+# Exception : assets versionnés (polices, etc.)
+!assets/**/*.zip
+!assets/**/*.tar.gz
+
+# Secrets locaux
+.env
+.env.local
+*.key
+*.pem
+
+# OS / éditeurs
+.DS_Store
+.idea/
+.vscode/
+*.swp
