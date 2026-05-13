@@ -5,7 +5,7 @@
 sudo dnf install -y subversion
 ```
 
-## Vérification
+## Verification
 ```bash
 svn --version
 ```

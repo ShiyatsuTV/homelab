@@ -1,24 +1,24 @@
 # WSL + Fedora — Install
 
-Procédure d'installation de WSL2 et de Fedora 42 sur Windows, avec les paquets de base.
+Procedure to install WSL2 and Fedora 42 on Windows, with the baseline packages.
 
-## Pré-requis
-- Windows 10/11 avec WSL2 supporté
+## Prerequisites
+- Windows 10/11 with WSL2 support
 
-## Étapes
+## Steps
 
-### 1. Installer WSL (PowerShell, Windows)
+### 1. Install WSL (PowerShell, Windows)
 ```powershell
 wsl --install
 ```
-Redémarrer le PC, puis :
+Reboot, then:
 ```powershell
 wsl --status
 wsl --list --online
 wsl --install FedoraLinux-42
 ```
 
-### 2. Paquets de base (dans Fedora)
+### 2. Baseline packages (inside Fedora)
 ```bash
 sudo dnf install update
 sudo dnf install -y ncurses util-linux coreutils
@@ -28,6 +28,6 @@ sudo dnf install java-21-openjdk
 sudo dnf install java-21-openjdk-devel
 ```
 
-## Vérification
-- `wsl --list -v` (Windows) doit afficher `FedoraLinux-42` en running
-- `fastfetch` s'exécute correctement dans Fedora
+## Verification
+- `wsl --list -v` (Windows) must show `FedoraLinux-42` as running
+- `fastfetch` runs correctly inside Fedora

@@ -1,21 +1,21 @@
-# Git — Install + config globale
+# Git — Install + global config
 
 ## Install
 ```bash
 sudo dnf install git -y
 ```
 
-## Config globale
+## Global config
 ```bash
 git config --global user.name "ShiyatsuTV"
 git config --global user.email "shiyatsu70@gmail.com"
 git config --global credential.helper store
 ```
 
-> `credential.helper store` stocke les credentials en clair dans `~/.git-credentials`. OK pour usage perso sur machine de confiance.
+> `credential.helper store` keeps credentials in cleartext in `~/.git-credentials`. Fine for personal use on a trusted machine.
 
-## Vérification
+## Verification
 ```bash
 git config --global --list
 ```
-Doit afficher `user.name`, `user.email`, `credential.helper`.
+Must show `user.name`, `user.email`, `credential.helper`.

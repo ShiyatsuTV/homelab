@@ -1,28 +1,28 @@
 # Jenkins
 
-Placeholder pour Jenkins auto-hébergé en Docker.
+Placeholder for self-hosted Jenkins in Docker.
 
-## À quoi ça sert
-Le `run.sh` n'est pas encore écrit — ce dossier sert pour l'instant de mémo sur la post-install Jenkins.
+## What it does
+`run.sh` isn't written yet — this folder currently serves as a memo on Jenkins post-install.
 
-## Post-install : autoriser jenkins à utiliser Docker
+## Post-install: let jenkins use Docker
 
-Une fois Jenkins installé, l'utilisateur `jenkins` n'a pas accès au socket Docker par défaut. Pour qu'il puisse builder des images / lancer des containers :
+Once Jenkins is installed, the `jenkins` user has no access to the Docker socket by default. To let it build images / run containers:
 
 ```bash
-# Vérifier le groupe docker
+# Check the docker group
 getent group docker
 
-# Ajouter l'utilisateur jenkins au groupe docker
+# Add the jenkins user to the docker group
 sudo usermod -aG docker jenkins
 
-# Redémarrer Jenkins pour que la nouvelle appartenance soit prise en compte
+# Restart Jenkins so the new membership is picked up
 sudo systemctl restart jenkins
 ```
 
-## Vérification
+## Verification
 
 ```bash
 sudo -u jenkins -g docker docker ps
 ```
-Doit lister les containers sans erreur de permission.
+Must list containers without permission errors.

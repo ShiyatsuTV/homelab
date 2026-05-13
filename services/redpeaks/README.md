@@ -1,20 +1,20 @@
 # Redpeaks
 
-Outil de monitoring/supervision applicatif (image privée `redpeaks:*`).
+Application monitoring/supervision tool (private image `redpeaks:*`).
 
-## À quoi ça sert
-Container Tomcat-based pour faire tourner Redpeaks en local.
+## What it does
+Tomcat-based container to run Redpeaks locally.
 
-## Démarrer
+## Running
 ```bash
 ./run.sh
 ```
 
-## Accès
-- HTTP : http://localhost:8888
-- HTTPS : https://localhost:8883
+## Access
+- HTTP: http://localhost:8888
+- HTTPS: https://localhost:8883
 
-## Données (volumes Docker nommés)
+## Data (named Docker volumes)
 - `redpeaks-8888-certificates`
 - `redpeaks-8888-drivers`
 - `redpeaks-8888-db`
@@ -27,6 +27,6 @@ Container Tomcat-based pour faire tourner Redpeaks en local.
 - `redpeaks-8888-workers`
 
 ## Notes
-- Version d'image pinnée dans `run.sh` (variable `IMAGE`)
-- `--add-host=host.docker.internal:host-gateway` permet au container d'atteindre la machine hôte
-- Pour nettoyer entièrement (containers + images + volumes) : `../../scripts/docker-clean.sh redpeaks`
+- Image version pinned in `run.sh` (variable `IMAGE`)
+- `--add-host=host.docker.internal:host-gateway` lets the container reach the host machine
+- To wipe everything (containers + images + volumes): `../../scripts/docker-clean.sh redpeaks`

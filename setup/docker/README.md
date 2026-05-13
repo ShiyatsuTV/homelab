@@ -1,10 +1,10 @@
-# Docker — Install sur Fedora
+# Docker — Install on Fedora
 
-Installation de Docker CE sur Fedora avec ajout de l'utilisateur au groupe `docker`.
+Docker CE install on Fedora, with the user added to the `docker` group.
 
-## Étapes
+## Steps
 
-### 1. Supprimer les anciennes versions
+### 1. Remove old versions
 ```bash
 sudo dnf remove docker \
                 docker-client \
@@ -18,7 +18,7 @@ sudo dnf remove docker \
                 docker-engine
 ```
 
-### 2. Installer Docker CE
+### 2. Install Docker CE
 ```bash
 sudo dnf config-manager addrepo --from-repofile https://download.docker.com/linux/fedora/docker-ce.repo
 sudo dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
@@ -26,15 +26,15 @@ sudo systemctl enable docker
 sudo systemctl start docker
 ```
 
-### 3. Ajouter ton user au groupe docker
+### 3. Add your user to the docker group
 ```bash
 sudo groupadd docker
 sudo usermod -aG docker shiyatsu
 getent group docker
 ```
 
-Se déconnecter / reconnecter pour activer le groupe dans la session.
+Log out / log back in to activate the group in the session.
 
-## Vérification
-- `docker run hello-world` fonctionne **sans `sudo`**
-- `docker --version` répond
+## Verification
+- `docker run hello-world` works **without `sudo`**
+- `docker --version` responds

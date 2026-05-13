@@ -1,23 +1,23 @@
 # Claude Code — Setup
 
-Setup de [Claude Code](https://claude.com/claude-code) (CLI Anthropic) avec les plugins perso.
+Setup of [Claude Code](https://claude.com/claude-code) (Anthropic's CLI) with my personal plugins.
 
-## Pré-requis
-- Claude Code installé (`claude` disponible dans le PATH)
+## Prerequisites
+- Claude Code installed (`claude` available in `PATH`)
 
-## Installer la liste de plugins perso
+## Install the personal plugin list
 ```bash
 ./install-plugins.sh
 ```
 
-Le script installe tous les plugins listés dans le tableau `plugins` (superpowers, code-review, frontend-design, feature-dev, etc.).
+The script installs every plugin listed in the `plugins` array (superpowers, code-review, frontend-design, feature-dev, etc.).
 
-## Ajouter un nouveau plugin
-Éditer `install-plugins.sh` et ajouter une ligne au tableau `plugins` au format `"nom@registre"`. Puis relancer le script.
+## Add a new plugin
+Edit `install-plugins.sh` and append a line to the `plugins` array in the format `"name@registry"`. Then re-run the script.
 
-## Vérification
-Run :
+## Verification
+Run:
 ```bash
 claude plugin list
 ```
-Tous les plugins du tableau doivent apparaître.
+Every plugin in the array should appear.
