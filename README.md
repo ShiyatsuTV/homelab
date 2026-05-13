@@ -1,28 +1,28 @@
 # homelab
 
-Repo personnel de centralisation : notes, documentation et scripts perso.
+Personal repo centralizing notes, documentation, and scripts.
 
-## Organisation
+## Layout
 
-| Dossier | Contenu |
+| Folder | Content |
 |---|---|
-| [`setup/`](setup/) | Procédures d'install machine (WSL, Docker, Git, terminal, VPN…) |
-| [`services/`](services/) | Services auto-hébergés en Docker (VictoriaMetrics, Redpeaks, Dokuwiki, Jenkins) |
-| [`scripts/`](scripts/) | Scripts utilitaires transverses |
-| [`tools/`](tools/) | Setup et config d'outils utilisés (Claude Code, etc.) |
-| [`notes/`](notes/) | Cheatsheets et mémos divers (à remplir au fil de l'eau) |
-| [`assets/`](assets/) | Binaires et archives (polices, etc.) |
-| [`docs/`](docs/) | Specs et plans internes (workflow Superpowers) |
+| [`setup/`](setup/) | Machine install procedures (WSL, Docker, Git, terminal, VPN…) |
+| [`services/`](services/) | Self-hosted Docker services (VictoriaMetrics, Redpeaks, Dokuwiki, Jenkins) |
+| [`scripts/`](scripts/) | Generic utility scripts |
+| [`tools/`](tools/) | Setup and config of tools I use (Claude Code, etc.) |
+| [`notes/`](notes/) | Cheatsheets and memos (filled in as needed) |
+| [`assets/`](assets/) | Binaries and archives (fonts, etc.) |
+| [`docs/`](docs/) | Internal specs and plans (Superpowers workflow) |
 
 ## Conventions
 
-- Documentation en **Markdown**, scripts en **Bash `.sh`**
-- **Kebab-case** pour noms de dossiers et fichiers (`docker-clean.sh`, `wsl-fedora/`)
-- Un **`README.md`** par sous-dossier dès qu'il contient du contenu
-- Templates de README : voir [`docs/superpowers/specs/2026-05-13-repo-organization-design.md`](docs/superpowers/specs/2026-05-13-repo-organization-design.md#conventions-internes)
+- Documentation in **Markdown**, scripts in **Bash `.sh`**
+- **Kebab-case** for folder and file names (`docker-clean.sh`, `wsl-fedora/`)
+- One **`README.md`** per subfolder as soon as it has content
+- README templates: see [`docs/superpowers/specs/2026-05-13-repo-organization-design.md`](docs/superpowers/specs/2026-05-13-repo-organization-design.md#conventions-internes)
 
-## Zones grises courantes
+## Common grey areas
 
-- `setup/` = procédure d'install (à faire une fois)
-- `notes/` = référence rapide (cheatsheet, mémo)
-- Un sujet (Docker, Git, …) peut donc apparaître dans les **deux**.
+- `setup/` = install procedure (one-off)
+- `notes/` = quick reference (cheatsheet, memo)
+- A topic (Docker, Git, …) can therefore appear in **both**.
