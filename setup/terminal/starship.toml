@@ -1,0 +1,23 @@
+add_newline = false
+
+[username]
+show_always = true
+format = "[$user]($style) "
+
+[hostname]
+ssh_only = true
+format = "[@$hostname]($style) "
+
+[character]
+success_symbol = "❯"
+error_symbol = "❯"
+
+[directory]
+truncation_length = 0
+truncate_to_repo = false
+home_symbol = "~"
+
+[custom.svn]
+when = "svn info >/dev/null 2>&1"
+command = "svn info --show-item relative-url 2>/dev/null | sed 's#^\\^/##'"
+format = " on [ $output]($style)"
