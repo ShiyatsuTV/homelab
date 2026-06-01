@@ -52,3 +52,26 @@ sudo systemctl enable jenkins
 sudo systemctl start jenkins
 sudo systemctl stop jenkins
 ```
+
+## Post-install: let Jenkins use Docker
+
+Once Jenkins is installed, the `jenkins` user has no access to the Docker socket by default. To let it build images / run containers:
+
+```bash
+# Check the docker group
+getent group docker
+
+# Add the jenkins user to the docker group
+sudo usermod -aG docker jenkins
+
+# Restart Jenkins so the new membership is picked up
+sudo systemctl restart jenkins
+```
+
+Verify access:
+
+```bash
+sudo -u jenkins -g docker docker ps
+```
+
+Must list containers without permission errors.
