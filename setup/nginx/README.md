@@ -107,3 +107,20 @@ server {
     }
 }
 ```
+
+## Max upload size
+
+By default nginx rejects request bodies larger than 1 MB with `413 Request
+Entity Too Large`. To allow larger uploads, set `client_max_body_size` inside
+the `server` (or `location`) block:
+
+```nginx
+client_max_body_size 500m;
+```
+
+Reload nginx after the change:
+
+```bash
+sudo nginx -t
+sudo systemctl reload nginx
+```
