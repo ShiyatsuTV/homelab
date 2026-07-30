@@ -10,7 +10,7 @@ Personal repo centralizing notes, documentation, and scripts.
 | [`services/`](services/) | Self-hosted Docker services (VictoriaMetrics, Redpeaks, Dokuwiki, Jenkins) |
 | [`scripts/`](scripts/) | Generic utility scripts |
 | [`tools/`](tools/) | Setup and config of tools I use (Claude Code, etc.) |
-| [`notes/`](notes/) | Cheatsheets and memos (filled in as needed) |
+| [`notes/`](notes/) | Cheatsheets and memos (Oracle, [Steam on Fedora](notes/steam/)…) |
 | [`assets/`](assets/) | Binaries and archives (fonts, etc.) |
 | [`docs/`](docs/) | Internal specs and plans (Superpowers workflow) |
 
