@@ -15,6 +15,9 @@
 # Exception : .env volontairement versionné pour installations locales
 !services/oracle-xe/.env
 
+# Exports DokuWiki (documentation interne, jamais commitée)
+*.dokuwiki
+
 # OS / éditeurs
 .DS_Store
 .idea/
