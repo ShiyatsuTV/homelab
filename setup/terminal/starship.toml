@@ -1,5 +1,9 @@
 add_newline = false
 
+# Ordre explicite pour garder svn près de git et la version Maven/Java à leur
+# place d'origine ; $all ajoute ensuite tous les autres modules sans doublon.
+format = "$username$hostname$directory$git_branch$git_commit$git_state$git_metrics$git_status${custom.svn}$package${custom.mvnversion}${custom.java}$all"
+
 [username]
 show_always = true
 format = "[$user]($style) "
@@ -21,3 +25,36 @@ home_symbol = "~"
 when = "svn info >/dev/null 2>&1"
 command = "svn info --show-item relative-url 2>/dev/null | sed 's#^\\^/##'"
 format = " on [ $output]($style)"
+
+# Le module java natif lance `java -version` à chaque prompt (~1 s sous Windows).
+# Remplacé par une lecture du fichier $JAVA_HOME/release (instantané).
+[java]
+disabled = true
+
+[custom.java]
+detect_files = ["pom.xml", "build.gradle", "build.gradle.kts", "build.sbt", ".java-version"]
+detect_extensions = ["java"]
+# Sans JAVA_HOME (ex. Fedora), suit le lien `java` du PATH jusqu'au JDK.
+command = '''
+h="$JAVA_HOME"
+if [ -z "$h" ] && j=$(command -v java); then h=$(dirname "$(dirname "$(readlink -f "$j")")"); fi
+[ -f "$h/release" ] && sed -n 's/^JAVA_VERSION="\(.*\)"/\1/p' "$h/release"
+'''
+shell = ["bash", "--noprofile", "--norc"]
+symbol = "☕ "
+style = "red dimmed"
+format = "(via [$symbol(v$output )]($style))"
+
+# Version Maven quand le pom utilise ${propriété} ou hérite du parent
+# (le module package n'affiche rien dans ce cas) → ~/.config/starship/maven-version.sh
+[custom.mvnversion]
+detect_files = ["pom.xml"]
+command = ". ~/.config/starship/maven-version.sh"
+shell = ["bash", "--noprofile", "--norc"]
+symbol = "📦 "
+style = "208 bold"
+format = "(is [$symbol(v$output )]($style))"
+
+# 🅼 (U+1F17C) n'existe dans aucune police chargée par WezTerm → icône Nerd Font
+[maven]
+symbol = " "

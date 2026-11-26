@@ -1,0 +1,2 @@
+# The Starship script is sourced by bash: CRLF line endings would break it on Windows
+*.sh text eol=lf
