@@ -29,7 +29,7 @@ config.tab_bar_at_bottom = true
 config.hide_tab_bar_if_only_one_tab = true
 config.window_padding = { left = 10, right = 10, top = 6, bottom = 8 }
 config.window_decorations = 'TITLE | RESIZE'
-config.window_background_opacity = 0.90
+config.window_background_opacity = 1.0  -- opaque : moins de travail GPU (composition)
 config.text_background_opacity = 1.0
 config.adjust_window_size_when_changing_font_size = false
 
@@ -66,11 +66,10 @@ config.colors = {
 --------------------------------------------------
 -- Performances
 --------------------------------------------------
--- WebGpu freezait au resize (build 20240203 + double GPU AMD + transparence).
--- Pour revenir à WebGpu, remplacer par :
---   config.front_end = 'WebGpu'
---   config.webgpu_power_preference = 'HighPerformance'
-config.front_end = 'OpenGL'
+-- WebGpu freezait au resize sur la stable 20240203 (double GPU AMD + transparence) ;
+-- OK sur la nightly. En cas de freeze, repasser sur config.front_end = 'OpenGL'.
+config.front_end = 'WebGpu'
+config.webgpu_power_preference = 'HighPerformance'  -- RX 7900 XTX plutôt que l'iGPU
 config.animation_fps = 60
 config.max_fps = 120
 

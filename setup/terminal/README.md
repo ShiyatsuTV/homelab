@@ -99,16 +99,13 @@ command -v starship >/dev/null 2>&1 && eval "$(starship init bash)"
 ### What the config sets
 - **Shell**: `C:\Program Files\Git\bin\bash.exe --login -i`, started in the home folder
 - **Font**: JetBrains Mono 12.5, line height 1.1, ligatures on, `Symbols Nerd Font Mono` fallback for icons
-- **Theme**: custom "Hyprland inspired" colors (background `#0F111A`, Catppuccin palette), 0.90 opacity, blinking bar cursor
+- **Theme**: custom "Hyprland inspired" colors (background `#0F111A`, Catppuccin palette), opaque background, blinking bar cursor
 - **Tabs**: bar at the bottom, hidden when only one tab is open
-- **Rendering**: OpenGL front end, 120 fps max
+- **Rendering**: WebGpu front end on the high-performance GPU (`webgpu_power_preference = 'HighPerformance'`), 120 fps max
 
-> **Why OpenGL and not WebGpu**: with `front_end = 'WebGpu'`, WezTerm froze on every resize. The machine has two AMD GPUs (Radeon iGPU + RX 7900 XTX) and the window uses 0.90 opacity, and WebGpu has to rebuild its swapchain on each resize. OpenGL is stable. To try WebGpu again on the nightly build, replace the `front_end` line with:
-> ```lua
-> config.front_end = 'WebGpu'
-> config.webgpu_power_preference = 'HighPerformance'
-> ```
-> If it freezes again, also try `window_background_opacity = 1.0`, or force `wezterm-gui.exe` on the high-performance GPU in Windows Settings → Display → Graphics.
+> **WebGpu, opacity and the stable build**: on the stable build `20240203`, `front_end = 'WebGpu'` froze on every resize. The machine has two AMD GPUs (Radeon iGPU + RX 7900 XTX), the window used 0.90 opacity, and WebGpu rebuilds its swapchain on each resize. The nightly build resizes fine with WebGpu. The background is opaque (`window_background_opacity = 1.0`): a transparent window has to be composited with the desktop on every frame, which costs GPU work for no real gain.
+>
+> If it freezes again, switch to `config.front_end = 'OpenGL'` (slower but very stable), or force `wezterm-gui.exe` on the high-performance GPU in Windows Settings → Display → Graphics.
 
 ### Shortcuts
 
@@ -155,7 +152,7 @@ Limit: if the parent POM was never downloaded to `~/.m2` (project never built), 
 
 | Symptom | Check |
 |---|---|
-| WezTerm freezes on resize / split | `wezterm --version`: install the nightly build; keep `front_end = 'OpenGL'` |
+| WezTerm freezes on resize / split | `wezterm --version`: install the nightly build; if it still freezes, use `front_end = 'OpenGL'` |
 | Prompt slow in some folders | `starship timings` in that folder lists the time per module |
 | An icon is missing (empty or square) | `wezterm ls-fonts --text "<char>"`: `glyph=.notdef` means no loaded font has it, pick a Nerd Font icon instead |
 | `maven-version.sh` errors with `$'\r'` | The script got CRLF line endings: it must be LF (enforced by `.gitattributes` in this folder) |
