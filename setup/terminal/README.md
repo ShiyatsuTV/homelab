@@ -138,14 +138,14 @@ Alt is used instead of Ctrl because `Ctrl+H` (backspace), `Ctrl+V` (quoted inser
 | `format` | Explicit order: user, directory, git, svn, package version, Java, then everything else (`$all`) | Keeps svn next to git and the versions in their usual place, since custom modules are otherwise added at the end |
 | `custom.svn` | Shows the SVN relative URL in SVN working copies | No built-in SVN module |
 | `java` (disabled) → `custom.java` | Reads `JAVA_VERSION` from `$JAVA_HOME/release` (or, without `JAVA_HOME`, from the JDK the `java` on the `PATH` points to) | The built-in module runs `java -Xinternalversion` on every prompt: ~1 s on Windows, which made each `cd` into a Java project slow (2.1 s prompt → 0.13 s). Same source as before (`JAVA_HOME`), just without starting a JVM |
-| `maven` | Symbol set to the Nerd Font Maven icon (`U+E674`) | The default `🅼` (`U+1F17C`) exists in none of the fonts WezTerm loads and was not displayed |
+| `maven` | Symbol set to the Nerd Font Maven icon (`U+E674`) | The default `🅼` (`U+1F17C`) exists in none of the fonts WezTerm loads and was not displayed. Needs a Starship version with the `maven` module (1.27 has it); the Fedora copr package is still 1.24.2, which warns `Error in 'StarshipRoot' at 'maven': Unknown key` on every prompt: remove the `[maven]` section from the Fedora copy until it is updated |
 | `custom.mvnversion` | Shows the Maven project version when `pom.xml` uses a `${property}` or inherits it from the parent, using `maven-version.sh` | The built-in `package` module only reads a literal `<version>` in `pom.xml` and shows nothing otherwise |
 
 ### `maven-version.sh`
 Pure bash (no external process, ~30 ms under Git Bash). When the project version is a literal, it prints nothing and the built-in `package` module shows it, so there is no duplicate. Otherwise it resolves the property from, in order:
 1. `.mvn/maven.config` (`-Dprop=value`)
 2. the project `pom.xml`
-3. the parent POMs, up to 5 levels: `relativePath` (default `../pom.xml`) if its `artifactId` matches, else `~/.m2/repository`
+3. the parent POMs, up to 5 levels: `relativePath` (default `../pom.xml`) if its `artifactId` matches, else `~/.m2/repository`. From WSL on a project under `/mnt/c/Users/<name>/`, it falls back to the Windows `~/.m2` when the parent is not in the Linux one
 
 Example: `redpeaks-collector` has `<version>${application.version}</version>` and the value (`7.0.15`) is defined in the parent `com.redpeaks.core:com-redpeaks-core:2.1.0`.
 

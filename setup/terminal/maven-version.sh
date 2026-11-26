@@ -48,7 +48,12 @@ __mv_main() {
       [ "$__mv_v" = "$pa" ] && { ppom="$curdir/$relpath"; curdir="${ppom%/*}"; }
     fi
     if [ -z "$ppom" ] && [ -n "$pg" ]; then
-      ppom="$m2/${pg//.//}/$pa/$pv/$pa-$pv.pom"; curdir="${ppom%/*}"
+      ppom="$m2/${pg//.//}/$pa/$pv/$pa-$pv.pom"
+      # WSL sur un projet Windows (/mnt/c/Users/<nom>/...) : repli sur le ~/.m2 Windows
+      if [ ! -f "$ppom" ] && [[ $dir =~ ^(/mnt/[a-z]/Users/[^/]+)/ ]]; then
+        ppom="${BASH_REMATCH[1]}/.m2/repository/${pg//.//}/$pa/$pv/$pa-$pv.pom"
+      fi
+      curdir="${ppom%/*}"
     fi
     __mv_read "$ppom"; [ -z "$__mv_c" ] && break
     cur="${__mv_c#*<project}"; chain+=("$cur")
