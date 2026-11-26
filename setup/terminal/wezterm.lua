@@ -71,7 +71,7 @@ config.colors = {
 config.front_end = 'WebGpu'
 config.webgpu_power_preference = 'HighPerformance'  -- RX 7900 XTX plutôt que l'iGPU
 config.animation_fps = 60
-config.max_fps = 120
+config.max_fps = 60  -- largement suffisant pour un terminal
 
 --------------------------------------------------
 -- Raccourcis clavier

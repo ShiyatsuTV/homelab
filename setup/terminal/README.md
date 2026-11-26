@@ -101,7 +101,7 @@ command -v starship >/dev/null 2>&1 && eval "$(starship init bash)"
 - **Font**: JetBrains Mono 12.5, line height 1.1, ligatures on, `Symbols Nerd Font Mono` fallback for icons
 - **Theme**: custom "Hyprland inspired" colors (background `#0F111A`, Catppuccin palette), opaque background, blinking bar cursor
 - **Tabs**: bar at the bottom, hidden when only one tab is open
-- **Rendering**: WebGpu front end on the high-performance GPU (`webgpu_power_preference = 'HighPerformance'`), 120 fps max
+- **Rendering**: WebGpu front end on the high-performance GPU (`webgpu_power_preference = 'HighPerformance'`), 60 fps max (more brings nothing for text and only costs GPU time)
 
 > **WebGpu, opacity and the stable build**: on the stable build `20240203`, `front_end = 'WebGpu'` froze on every resize. The machine has two AMD GPUs (Radeon iGPU + RX 7900 XTX), the window used 0.90 opacity, and WebGpu rebuilds its swapchain on each resize. The nightly build resizes fine with WebGpu. The background is opaque (`window_background_opacity = 1.0`): a transparent window has to be composited with the desktop on every frame, which costs GPU work for no real gain.
 >
