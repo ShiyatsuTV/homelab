@@ -18,6 +18,11 @@ plugins=(
   "skill-creator@claude-plugins-official"
   "security-guidance@claude-plugins-official"
   "feature-dev@claude-plugins-official"
+  "pr-review-toolkit@claude-plugins-official"
+  "claude-md-management@claude-plugins-official"
+  "hookify@claude-plugins-official"
+  "code-modernization@claude-plugins-official"
+  "claude-security@claude-plugins-official"
 )
 
 failed=()

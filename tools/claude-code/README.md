@@ -29,6 +29,35 @@ After installing, run `/reload-plugins` in Claude Code or restart it.
 
 The plugins only install the Claude Code side. The LSP plugins and Playwright also need tools installed on the machine: see [What each plugin needs](#what-each-plugin-needs).
 
+### What the plugins are for
+
+| Plugin | Use |
+|---|---|
+| superpowers | Workflow skills: brainstorming, plans, TDD, systematic debugging, verification before "done" |
+| feature-dev | `/feature-dev`: guided feature work with explorer, architect and reviewer agents |
+| code-review | `/code-review`: multi-agent review of a pull request |
+| pr-review-toolkit | Specialized review agents: comments, tests, error handling, type design, code quality |
+| code-simplifier | Agent that cleans up recently changed code without changing behavior |
+| security-guidance | Security warnings while Claude edits, diff review when it stops |
+| claude-security | `/claude-security`: in-depth vulnerability scan by a team of agents that challenge each finding |
+| code-modernization | `/code-modernization:modernize`: assessment, code map, business rules mined from the code and migration plan for a legacy codebase |
+| claude-md-management | Audit `CLAUDE.md` files and add what a session learned |
+| hookify | Create hooks from a plain sentence ("never run `mvn deploy`") |
+| claude-code-setup | Recommends hooks, skills and MCP servers for a codebase |
+| skill-creator | Create, test and tune skills |
+| frontend-design | Distinctive UI design instead of templated defaults |
+| ralph-loop | `/ralph-loop`: Claude repeats the same task until it is done |
+| context7 | Up-to-date library documentation |
+| playwright | Drive a browser: test pages, screenshots, forms |
+| pyright-lsp, typescript-lsp, jdtls-lsp | Language servers: type errors and navigation for Python, TypeScript/JavaScript, Java |
+
+All of them come from the official `claude-plugins-official` marketplace. Most are written by Anthropic. superpowers (Jesse Vincent), playwright (Microsoft) and context7 (Upstash) are third-party plugins listed there.
+
+Review overlaps: superpowers, `code-review`, `pr-review-toolkit` and Claude Code's built-in `/code-review` all do code review. `pr-review-toolkit` is the most detailed.
+
+### Plugin settings
+code-modernization and claude-security have settings with working defaults: `/plugin configure <plugin>@claude-plugins-official` in Claude Code changes them. Both send usage counts (whole numbers: which command ran, how many findings…) through Claude Code's telemetry. Turn it off with the `telemetry` setting of code-modernization, or for everything with the `DISABLE_TELEMETRY=1` environment variable.
+
 ### Add a new plugin
 Add a line in the format `name@marketplace` to **both** scripts (`plugins` array in `install-plugins.sh`, `for` list in `install-plugins.bat`), then re-run the script.
 
@@ -39,7 +68,10 @@ Add a line in the format `name@marketplace` to **both** scripts (`plugins` array
 
 | Plugin | Needs on the machine |
 |---|---|
-| superpowers, code-simplifier, code-review, frontend-design, ralph-loop, claude-code-setup, skill-creator, security-guidance, feature-dev | Nothing |
+| superpowers, code-simplifier, code-review, frontend-design, ralph-loop, claude-code-setup, skill-creator, security-guidance, feature-dev, pr-review-toolkit, claude-md-management | Nothing |
+| hookify | `python3` in `PATH` (its hooks run `python3 .../pretooluse.py`) |
+| claude-security | Python 3.9+ in `PATH`. A git checkout to scan changes. Reading findings from hosted Claude Security needs the Claude Security connector from claude.ai |
+| code-modernization | Nothing required. Optional: `python3` (map, report), [`scc`](https://github.com/boyter/scc) or `cloc` (size metrics), the legacy project's build toolchain (runs old and new side by side). `/code-modernization:modernize-preflight` checks them |
 | context7 | Nothing: hosted remote MCP server. Authenticate once when Claude Code asks (`/mcp`) |
 | playwright | **Node 20+** (starts `npx @playwright/mcp@latest`) and Chrome |
 | pyright-lsp | `pyright-langserver` in `PATH` (npm package `pyright`, Node 14+) |
