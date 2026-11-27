@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
-set -euo pipefail
+# Installs the personal Claude Code plugin list.
+# Safe to re-run: plugins already installed are skipped.
+set -uo pipefail
 
 plugins=(
   "superpowers@claude-plugins-official"
@@ -13,15 +15,22 @@ plugins=(
   "ralph-loop@claude-plugins-official"
   "jdtls-lsp@claude-plugins-official"
   "claude-code-setup@claude-plugins-official"
-  "qodo-skills@claude-plugins-official"
   "skill-creator@claude-plugins-official"
   "security-guidance@claude-plugins-official"
   "feature-dev@claude-plugins-official"
 )
 
+failed=()
 for plugin in "${plugins[@]}"; do
   echo "Installing ${plugin}..."
-  claude plugin install "$plugin"
+  if ! claude plugin install "$plugin"; then
+    failed+=("$plugin")
+  fi
 done
 
+echo
+if ((${#failed[@]})); then
+  echo "Failed: ${failed[*]}" >&2
+  exit 1
+fi
 echo "All plugins installed."
