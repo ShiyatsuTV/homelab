@@ -43,6 +43,7 @@ The plugins only install the Claude Code side. The LSP plugins and Playwright al
 | code-modernization | `/code-modernization:modernize`: assessment, code map, business rules mined from the code and migration plan for a legacy codebase |
 | claude-md-management | Audit `CLAUDE.md` files and add what a session learned |
 | hookify | Create hooks from a plain sentence ("never run `mvn deploy`") |
+| session-report | `/session-report`: HTML report of Claude Code usage (tokens, cache efficiency, subagents, skills, most expensive prompts). For the current session: `/cost`; for plan limits: `/usage` |
 | claude-code-setup | Recommends hooks, skills and MCP servers for a codebase |
 | skill-creator | Create, test and tune skills |
 | frontend-design | Distinctive UI design instead of templated defaults |
@@ -68,7 +69,7 @@ Add a line in the format `name@marketplace` to **both** scripts (`plugins` array
 
 | Plugin | Needs on the machine |
 |---|---|
-| superpowers, code-simplifier, code-review, frontend-design, ralph-loop, claude-code-setup, skill-creator, security-guidance, feature-dev, pr-review-toolkit, claude-md-management | Nothing |
+| superpowers, code-simplifier, code-review, frontend-design, ralph-loop, claude-code-setup, skill-creator, security-guidance, feature-dev, pr-review-toolkit, claude-md-management, session-report | Nothing |
 | hookify | `python3` in `PATH` (its hooks run `python3 .../pretooluse.py`) |
 | claude-security | Python 3.9+ in `PATH`. A git checkout to scan changes. Reading findings from hosted Claude Security needs the Claude Security connector from claude.ai |
 | code-modernization | Nothing required. Optional: `python3` (map, report), [`scc`](https://github.com/boyter/scc) or `cloc` (size metrics), the legacy project's build toolchain (runs old and new side by side). `/code-modernization:modernize-preflight` checks them |

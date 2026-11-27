@@ -25,6 +25,7 @@ for %%P in (
   hookify@claude-plugins-official
   code-modernization@claude-plugins-official
   claude-security@claude-plugins-official
+  session-report@claude-plugins-official
 ) do (
   echo Installing %%P...
   call claude plugin install "%%P"

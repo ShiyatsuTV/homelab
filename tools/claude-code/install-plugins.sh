@@ -23,6 +23,7 @@ plugins=(
   "hookify@claude-plugins-official"
   "code-modernization@claude-plugins-official"
   "claude-security@claude-plugins-official"
+  "session-report@claude-plugins-official"
 )
 
 failed=()
